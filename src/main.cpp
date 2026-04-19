@@ -5,6 +5,7 @@
 #include <Geode/modify/LevelInfoLayer.hpp>
 #include <cmath>
 #include <cvolton.level-id-api/include/EditorIDs.hpp>
+#include "utils.hpp"
 
 using namespace geode::prelude;
 
