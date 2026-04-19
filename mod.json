@@ -9,9 +9,16 @@
 	"id": "caebae22.more-than-100",
 	"name": "More Than 100",
 	"version": "v1.0.0",
-	"developer": "CaeBae22",
+	"developers": ["CaeBae22", "CubingXT"],
 	"description": "Keeps track of how many times you beat level",
 	"dependencies": {
-		"geode.node-ids": ">=v1.23.3"
+		"geode.node-ids": {
+			"version": ">=v1.23.3",
+			"required": true
+		},
+		"cvolton.level-id-api": {
+			"version": ">=v2.0.0",
+			"required": true
+		}
 	}
 }
