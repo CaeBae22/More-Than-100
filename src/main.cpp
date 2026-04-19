@@ -16,8 +16,7 @@ bool isTrackable(PlayLayer* pl) {
     if (!pl || !pl->m_level) return false;
     if (pl->m_isPracticeMode) return false;
     if (pl->m_isTestMode) return false;
-    bool platformer = pl->m_isPlatformer;
-    if (platformer) return false;
+    if (pl->m_isPlatformer) return false;
     return true;
 }
 
@@ -83,7 +82,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
     bool init(GJGameLevel* level, bool challenge) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
 
-        if (level->m_isPlatformer) return true;
+        if (PlayLayer::get()->m_isPlatformer) return true;
 
         std::string key = getLevelKey(level);
         if (shouldShowStreak(key)) {
