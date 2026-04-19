@@ -16,7 +16,8 @@ bool isTrackable(PlayLayer* pl) {
     if (!pl || !pl->m_level) return false;
     if (pl->m_isPracticeMode) return false;
     if (pl->m_isTestMode) return false;
-    if (PlayLayer::get()->m_isPlatformer) return false;
+    bool platformer = pl->m_isPlatformer;
+    if (platformer) return false;
     return true;
 }
 
