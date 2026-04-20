@@ -82,7 +82,7 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
     bool init(GJGameLevel* level, bool challenge) {
         if (!LevelInfoLayer::init(level, challenge)) return false;
 
-        if (PlayLayer::get()->m_isPlatformer) return true;
+        if (level->m_isPlatformer) return true;
 
         std::string key = getLevelKey(level);
         if (shouldShowStreak(key)) {
