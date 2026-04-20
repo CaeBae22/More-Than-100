@@ -7,10 +7,17 @@
 		"ios": "2.2081"
 	},
 	"id": "caebae22.more-than-100",
-	"name": "More Than 100",
+	"name": "More Than 100%",
 	"version": "v1.0.0",
-	"developers": ["CaeBae22", "CubingXT"],
-	"description": "Keeps track of how many times you beat level",
+	"developer": "CaeBae22",
+	"description": "Adds high percents for consecutive attempts",
+	"links": {
+		"source": "https://github.com/CaeBae22/More-Than-100"
+	},
+	"issues": {
+		"info": "Report issues to CaeBae22 or CubingXT",
+		"url": "https://github.com/CaeBae22/More-Than-100/issues"
+	},
 	"dependencies": {
 		"geode.node-ids": {
 			"version": ">=v1.23.3",
@@ -20,5 +27,11 @@
 			"version": ">=v2.0.0",
 			"required": true
 		}
-	}
+	},
+	"tags": [
+		"offline",
+		"enhancement",
+		"interface",
+		"joke"
+	]
 }
