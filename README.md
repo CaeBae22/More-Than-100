@@ -17,9 +17,13 @@ to the total amount of one hundreds.
 Doesn't work on main levels, update coming soon
 
 ## Real World Example
-For example, if I beat a level three times in a row I would get 300%.
+1.  For example, if I beat a level three times in a row I would get 300%.
 Then, if I quit at 43% because I had to eat dinner, it would put 343%.
 But, if instead of quiting I died at 1% because I am silly and died early, then it would be 301%.
+
+2.  I was playing a stinky gauntlet level (NOT SCARLET SURGE BECAUSE THAT LEVEL IS GOATED) and beat it!
+(Suprisingly because those levels are so unsightreadable). Then I decided to play the same level just not in the gauntlet.
+When I died at 55% (FIVE FIVE) is synced between the two and says 155%!
 
 ## Credits
 CaeBae22: I build the mod.
