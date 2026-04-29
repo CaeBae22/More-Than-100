@@ -7,7 +7,6 @@
 #include <cmath>
 #include <cvolton.level-id-api/include/EditorIDs.hpp>
 
-
 using namespace geode::prelude;
 
 bool g_isAttemptOver = false;
@@ -33,16 +32,19 @@ std::string getBestStreakString(std::string levelID) {
 
 bool shouldShowStreak(std::string levelID) {
   std::string bestKey = "best-streak-" + levelID;
+  log::debug("bestKey is {}", bestKey);
   float val = Mod::get()->getSavedValue<float>(bestKey, 0.0f);
   return val > 100.0f;
 }
 
-class $modify(MyPlayLayer, PlayLayer) {
+class $modify(MoreThan100PlayLayer, PlayLayer) {
   bool init(GJGameLevel *level, bool p1, bool p2) {
     if (!PlayLayer::init(level, p1, p2))
       return false;
+
     std::string streakKey = "current-streak-" + getLevelKey(m_level);
-    g_currentStreak = Mod::get()->getSavedValue<float>(streakKey, 0.0f);
+    g_currentStreak = Mod::get()->getSavedValue<float>(
+        streakKey, 0.0f); // Possible get the value out of streakKey
     g_isAttemptOver = false;
     return true;
   }
@@ -91,7 +93,7 @@ class $modify(MyPlayLayer, PlayLayer) {
   }
 };
 
-class $modify(MyLevelInfoLayer, LevelInfoLayer) {
+class $modify(MoreThan100LevelInfoLayer, LevelInfoLayer) {
   bool init(GJGameLevel *level, bool challenge) {
     if (!LevelInfoLayer::init(level, challenge))
       return false;
@@ -101,48 +103,39 @@ class $modify(MyLevelInfoLayer, LevelInfoLayer) {
 
     std::string key = getLevelKey(level);
     if (shouldShowStreak(key)) {
-      std::string normalBest =
-          std::to_string(level->m_normalPercent.value()) + "%";
       std::string bestStreak = getBestStreakString(key);
 
-      auto children = this->getChildren();
-      for (int i = 0; i < children->count(); ++i) {
-        if (auto label =
-                typeinfo_cast<CCLabelBMFont *>(children->objectAtIndex(i))) {
-          if (std::string(label->getString()) == normalBest) {
-            label->setString(bestStreak.c_str());
-          }
-        }
+      if (auto label = typeinfo_cast<CCLabelBMFont *>(
+              this->getChildByID("normal-mode-percentage"))) {
+        label->setString(bestStreak.c_str());
       }
     }
     return true;
   }
 };
 
-class $modify(MyPauseLayer, PauseLayer) {
-  void customSetup() {
-    PauseLayer::customSetup();
-
+class $modify(MoreThan100PauseLayer, PauseLayer) {
+  void updateStreakLabel(float) {
     auto pl = PlayLayer::get();
     if (!isTrackable(pl))
       return;
 
     std::string key = getLevelKey(pl->m_level);
-    if (shouldShowStreak(key)) {
-      std::string normalBest =
-          std::to_string(pl->m_level->m_normalPercent.value()) + "%";
-      std::string bestStreak = getBestStreakString(key);
+    if (!shouldShowStreak(key))
+      return;
 
-      auto children = this->getChildren();
-      for (int i = 0; i < children->count(); ++i) {
-        if (auto label =
-                typeinfo_cast<CCLabelBMFont *>(children->objectAtIndex(i))) {
-          if (std::string(label->getString()) == normalBest) {
-            label->setString(bestStreak.c_str());
-          }
-        }
-      }
+    std::string bestStreak = getBestStreakString(key);
+
+    if (auto label = typeinfo_cast<CCLabelBMFont *>(
+            this->getChildByID("normal-progress-label"))) {
+      label->setString(bestStreak.c_str());
     }
+  }
+
+  void customSetup() {
+    PauseLayer::customSetup();
+    this->scheduleOnce(
+        schedule_selector(MoreThan100PauseLayer::updateStreakLabel), 0.0f);
   }
 };
 
@@ -152,7 +145,7 @@ class $modify(PlayerObject) {
       if (auto pl = PlayLayer::get()) {
         if (isTrackable(pl)) {
           float sessionPercent = pl->getCurrentPercent();
-          static_cast<MyPlayLayer *>(pl)->updateStats(
+          static_cast<MoreThan100PlayLayer *>(pl)->updateStats(
               (g_currentStreak >= 100.0f) ? g_currentStreak + sessionPercent
                                           : sessionPercent);
           Mod::get()->setSavedValue(
