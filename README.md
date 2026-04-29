@@ -17,7 +17,7 @@ to the total amount of one hundreds.
 ### Level Vault synchronization
 We all know that there are two versions of all event levels, gauntlet levels, daily levels, etc. There is the level in the actual gauntlet menu/event level and their is also the level published on the servers or in the level vault. It is annooying enough that you have to beat the level twice to get all of the stars and orbs, so we don't want to make it even more annoying that your More Than 100% percentage won't sync between the two levels, so we do that for you. Check the real world example for a real world example.
 
-### Note
+## Note
 Doesn't work on main level menu progress bar but still works on the pause menu. Update coming soon
 
 ## Real World Example
