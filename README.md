@@ -27,7 +27,7 @@ But, if instead of quiting I died at 1% because I am silly and died early, then 
 
 2.  I was playing a stinky gauntlet level (NOT SCARLET SURGE BECAUSE THAT LEVEL IS GOATED) and beat it!
 (Suprisingly because those levels are so unsightreadable). Then I decided to play the same level just not in the gauntlet.
-When I died at 55% (FIVE FIVE) is synced between the two and says 155%!
+When I died at 55% (FIVE FIVE) it is synced between the two and says 155%!
 
 ## Credits
 CaeBae22: I built the mod.
