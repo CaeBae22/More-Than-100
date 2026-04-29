@@ -131,7 +131,12 @@ class $modify(MoreThan100PauseLayer, PauseLayer) {
       label->setString(bestStreak.c_str());
     }
   }
-
+/*
+  Seriously Absolllute how could you hook literally half the game and
+  not even call the original functions. Now I have to do this fcking scheduling
+  sht because you can't type one line of code. Like it's not that hard bud. It's not
+  that hard. At least try to make us modders not have to work around you.
+*/
   void customSetup() {
     PauseLayer::customSetup();
     this->scheduleOnce(
