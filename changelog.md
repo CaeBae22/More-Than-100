@@ -1,3 +1,7 @@
+# v1.1.2
+
+    * Fixed level ID utility
+
 # v1.1.1
     * Added MegaHack compatibility
 
